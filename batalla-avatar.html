@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8"/>
+        <title>Batalla Avatar</title>
+        <script src="batalla-avatar-js/batalla-avatar.js"></script>
+    </head>
+    <body id="contenido"; style="width: 350px; margin:auto">
+        <header id="Encabezado-del-juego">
+            <h1><center>Batalla Avatar 🔥💧🌄</center></h1>
+        </header>
+        <section id="Escoger-personaje">
+            <center>
+            <h2>Escoge a tu personaje</h2>
+            <img id="foto-katara" src="ilustraciones/katara.png" height="100">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <img id="foto-zuko" src="ilustraciones/zuko.png" height="100">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <img for="foto-toph" src="ilustraciones/toph.png" height="100"><br>
+            <input type="radio" id="katara" name="personaje"><label for="katara">Katara 🌊</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="radio" id="zuko" name="personaje"><label for="zuko">Zuko 🔥</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="radio" id="toph" name="personaje"><label for="toph">Toph 🌄</label><br><br>
+            <button id="boton-personaje">Seleccionar</button>
+            </center>
+        </section>
+        
+        <section id="Escoger-ataque">
+            <h2>Escoge tu ataque</h2>
+            <p>
+                A tu oponente <span id="personaje-oponente">Tu oponente</span> le quedan <span id="vidas-oponente">3</span> vidas
+            </p>
+            <p>
+                A tu heroe <span id="personaje-jugador">tu personaje</span> le quedan <span id="vidas-jugador">3</span> vidas
+            </p>
+            <p>
+                <button id="boton-agua"> Agua 🌊 </button>
+                <button id="boton-fuego"> Fuego 🔥 </button>
+                <button id="boton-tierra"> Tierra 🌄 </button>
+            </p>
+        </section>
+        <section id="batalla">
+            <h2>Batalla</h2>
+            <p> Atacaste con fuego y <span>tu oponente</span> con agua - GANASTE ESTA PARTIDA<p>
+        </section>
+        <section id="reinicio">
+            <button id="boton-reiniciar"> Reiniciar juego </button>
+        </section>
+        
+    </body>
+</html>
