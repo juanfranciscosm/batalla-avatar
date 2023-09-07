@@ -24,6 +24,7 @@ Cada jugador inicia con 10 puntos de vida
 
 */
 
+// Primero declaramos las variables que se van a usar en el juego
 
 let personajes = ["Katara", "Zuko", "Toph"]
 let personajeJugador =""
@@ -76,10 +77,13 @@ function seleccionarOponente (){
 }
     
 function seleccionarPersonajeJugador(){
-    let spamPersonajeJugador= document.getElementById("personaje-jugador")
+    //se le asigna el valor a la variable personajeJugador
+    //Empezamos creando las variables para los inputs de seleccion de cada personaje
     let inputkatara=document.getElementById('katara')
     let inputZuko=document.getElementById('zuko')
     let inputToph=document.getElementById('toph')
+    //Ya que son inputs, verificamos si tienen el check cada uno de los inputs
+    //dependiendo del que sea verdadero, se le asigna un valor al personajeJugador
     if (inputkatara.checked){
         personajeJugador="Katara"
     } else if (inputZuko.checked) {
@@ -91,10 +95,18 @@ function seleccionarPersonajeJugador(){
         exit
     }
     alert ("Tu personaje es " + personajeJugador)
-    spamPersonajeJugador.innerHTML = personajeJugador
+    /*Ahora mostramos dentro del html que el personaje del jugador modificando el 
+    texto dinamico del html(el que esta entre las etiquetas <span>)*/
+    //creamos una variable que represente este elemento dinamico
+    let spanPersonajeJugador= document.getElementById("personaje-jugador") 
+    //le asignamos el valor correspondiente que vendria a ser el nombre del personaje seleccionado
+    spanPersonajeJugador.innerHTML = personajeJugador
+    /*Una vez el usuario escoge su personaje, el sistema escogera el suyo de modo que no 
+    sea el mismo que el del usuario*/
     seleccionarOponente()
 }
    
 
-window.addEventListener("load",iniciarJuego)
+window.addEventListener("load",iniciarJuego) /*con esta linea permitimos que el html cargue 
+antes de ejecutar la funcion raiz de inicio del juego*/
 
