@@ -5,14 +5,14 @@
         <title>Batalla Avatar</title>
         <script src="./batalla_avatar_js/batalla-avatar.js"></script>
     </head>
-    <body id="contenido"; style="width: 350px; margin:auto">
+    <body id="contenido"; style="width: 500px; margin:auto">
         <header id="Encabezado-del-juego">
             <h1><center>Batalla Avatar 🔥💧🌄</center></h1>
         </header>
         <section id="Escoger-personaje">
             <center>
             <h2>Escoge a tu personaje</h2>
-            <table  >
+            <table>
                 <tr>
                     <td>
                         <center>
@@ -61,10 +61,10 @@
         <section id="conteo-vidas">
             <h2>Conteo de vidas</h2>
             <p>
-                A tu oponente <span id="personaje-oponente">Tu oponente</span> le quedan <span id="vidas-oponente">3</span> vidas
+                A tu oponente <span id="personaje-oponente">...</span> le quedan <span id="vidas-oponente">10</span> puntos de vida
             </p>
             <p>
-                A tu heroe <span id="personaje-jugador">tu personaje</span> le quedan <span id="vidas-jugador">3</span> vidas
+                A tu heroe <span id="personaje-jugador">...</span> le quedan <span id="vidas-jugador">10</span> puntos de vida
             </p>
         </section>
         
@@ -78,7 +78,13 @@
         </section>
         <section id="batalla">
             <h2>Batalla</h2>
-            <p> Atacaste con fuego y <span>tu oponente</span> con agua - GANASTE ESTA PARTIDA<p>
+            <p>
+                <span id="personaje-jugador-batalla">...</span> VS <span id="personaje-oponente-batalla">...</span> 
+            </p>
+            <p id="mensajes">
+                
+            </p>
+        
         </section>
         <section id="reinicio">
             <button id="boton-reiniciar"> Reiniciar juego </button>

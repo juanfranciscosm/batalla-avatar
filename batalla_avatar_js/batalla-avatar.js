@@ -2,7 +2,8 @@
 Este juego tiene diferentes personajes y diferentes ataques
 Dependiendo del personaje, el ataque tendra mayor o menor impacto
 El impacto son las vidas que le quita al oponente con el ataque
-El impacto mayor es el que gana y reduce ese valor de impacto al contrincante
+El impacto mayor es el que gana y reduce el valor de la diferencias de impacto
+en la vida del contrincante perdedor
 
 Para el personaje Katara
 - El ataque de Agua tiene un impacto de 5
@@ -27,10 +28,18 @@ Cada jugador inicia con 10 puntos de vida
 // Primero declaramos las variables que se van a usar en el juego
 
 let personajes = ["Katara", "Zuko", "Toph"]
+let ataques = ["AGUA","FUEGO","TIERRA"]
 let personajeJugador =""
 let personajeOponente = personajes[aleatorio(2,0)]
 let ataqueJugador = ""
 let ataqueOponente = ""
+let impactoJugador=0
+let impactoOponente=0
+let vidasOponente=10
+let vidasJugador=10
+let resultado = ""
+let consecuencia =""
+
 
 
 function iniciarJuego(){
@@ -44,22 +53,136 @@ function iniciarJuego(){
     botonAgua.addEventListener("click", ataqueAgua)
     let botonTierra = document.getElementById("boton-tierra")
     botonTierra.addEventListener("click", ataqueTierra)
+    let botonReiniciar = document.getElementById("boton-reiniciar")
+    //botonReiniciar.addEventListener("click", location.reload())
 }
-   
+
+function seleccionAtaqueOponente(){
+    ataqueOponente=ataques[aleatorio(2,0)]
+}
 function ataqueFuego (){
     ataqueJugador="FUEGO"
-    alert (ataqueJugador)
+    seleccionAtaqueOponente()
+    batalla()
 }
 
 function ataqueAgua (){
     ataqueJugador="AGUA"
-    alert (ataqueJugador)
+    seleccionAtaqueOponente()
+    batalla()
 }
 
 function ataqueTierra (){
     ataqueJugador="TIERRA"
-    alert (ataqueJugador)
+    seleccionAtaqueOponente()
+    batalla()
 }
+
+function batalla(){
+    //Se asigna variables al numero de vidas y al resultado mostrado en pantalla
+    let spanVidasJugador = document.getElementById("vidas-jugador")
+    let spanVidasOponente = document.getElementById("vidas-oponente")
+    //Se asigna el valor del impacto del ataque del jugador
+    if (personajeJugador=="Katara"){
+        if(ataqueJugador=="AGUA"){
+            impactoJugador=5
+        }
+        else if (ataqueJugador=="FUEGO"){
+            impactoJugador=1
+        }
+        else if (ataqueJugador=="TIERRA"){
+            impactoJugador=1
+        }
+    }
+    else if (personajeJugador=="Zuko"){
+        if(ataqueJugador=="AGUA"){
+            impactoJugador=1
+        }
+        else if (ataqueJugador=="FUEGO"){
+            impactoJugador=5
+        }
+        else if (ataqueJugador=="TIERRA"){
+            impactoJugador=3
+        }
+    }
+    else if (personajeJugador=="Toph"){
+        if(ataqueJugador=="AGUA"){
+            impactoJugador=1
+        }
+        else if (ataqueJugador=="FUEGO"){
+            impactoJugador=2
+        }
+        else if (ataqueJugador=="TIERRA"){
+            impactoJugador=5
+        }
+    }
+    //Se asigna el valor del impacto del ataque del oponente
+    if (personajeOponente=="Katara"){
+        if(ataqueOponente=="AGUA"){
+            impactoOponente=5
+        }
+        else if (ataqueOponente=="FUEGO"){
+            impactoOponente=1
+        }
+        else if (ataqueOponente=="TIERRA"){
+            impactoOponente=1
+        }
+    }
+    else if (personajeOponente=="Zuko"){
+        if(ataqueOponente=="AGUA"){
+            impactoOponente=1
+        }
+        else if (ataqueOponente=="FUEGO"){
+            impactoOponente=5
+        }
+        else if (ataqueOponente=="TIERRA"){
+            impactoOponente=3
+        }
+    }
+    else if (personajeOponente=="Toph"){
+        if(ataqueOponente=="AGUA"){
+            impactoOponente=1
+        }
+        else if (ataqueOponente=="FUEGO"){
+            impactoOponente=2
+        }
+        else if (ataqueOponente=="TIERRA"){
+            impactoOponente=5
+        }
+    }
+    //Se calcula la reduccion de vidas segun el resultado de la batalla
+    if (impactoJugador==impactoOponente){
+        vidasOponente=vidasOponente-2
+        vidasJugador=vidasJugador-2
+        spanVidasJugador.innerHTML=vidasJugador.toString()
+        spanVidasOponente.innerHTML=vidasOponente.toString()
+        crearMensaje("EMPATE","Se reducen 2 vidas a cada jugador")
+    }
+    else if(impactoJugador>impactoOponente){
+        let reduccionVidas=impactoJugador-impactoOponente
+        vidasOponente=vidasOponente-reduccionVidas
+        spanVidasOponente.innerHTML=vidasOponente.toString()
+        crearMensaje("GANASTE","Tu oponente pierde " + reduccionVidas + " vidas")
+    }
+    else if(impactoOponente>impactoJugador){
+        vidasOponente=vidasOponente-2
+        let reduccionVidas=impactoOponente-impactoJugador
+        vidasJugador=vidasJugador-reduccionVidas
+        spanVidasJugador.innerHTML=vidasJugador.toString() 
+        crearMensaje("PERDISTE","pierdes " + reduccionVidas + " vidas." )
+    }
+}
+
+function crearMensaje (resultado, consecuencia){
+    let seccionBatalla=document.getElementById("batalla")  //especificamos la seccion donde aparecera los mensajes
+    let parrafoResultadoBatalla = document.createElement('p') //creamos el elemento que encapsula el mensaje
+    //al nuevo elemento se le asigna el mensaje
+    parrafoResultadoBatalla.innerHTML='Atacaste con '+ ataqueJugador+' y tu oponente ataco con ' + ataqueOponente + ". " + resultado +" "+consecuencia
+    //con appenchild asignamos un elemento hijo a un elemento padre (padre.appendChild(hijo))
+    seccionBatalla.appendChild(parrafoResultadoBatalla)
+ b
+}
+
 
 function aleatorio(max,min){
         return Math.floor(Math.random()*(max-min+1)+min)
@@ -67,13 +190,16 @@ function aleatorio(max,min){
     
 
 function seleccionarOponente (){
-    let spamPersonajeOponente= document.getElementById("personaje-oponente")
+    let spanPersonajeOponente= document.getElementById("personaje-oponente")
+    let spanOponenteBatalla=document.getElementById("personaje-oponente-batalla")
     //Selecciona un oponente que no sea el mismo que escogio el jugador
     while (personajeJugador == personajeOponente) {
         personajeOponente = personajes[aleatorio(2,0)]
     }
-    spamPersonajeOponente.innerHTML= personajeOponente
+    spanPersonajeOponente.innerHTML= personajeOponente
+    spanOponenteBatalla.innerHTML=personajeOponente
     alert("Tu oponente es "+ personajeOponente)
+    alert("Escoge tu ataque")
 }
     
 function seleccionarPersonajeJugador(){
@@ -99,8 +225,10 @@ function seleccionarPersonajeJugador(){
     texto dinamico del html(el que esta entre las etiquetas <span>)*/
     //creamos una variable que represente este elemento dinamico
     let spanPersonajeJugador= document.getElementById("personaje-jugador") 
+    let spanJugadorBatalla=document.getElementById("personaje-jugador-batalla")
     //le asignamos el valor correspondiente que vendria a ser el nombre del personaje seleccionado
     spanPersonajeJugador.innerHTML = personajeJugador
+    spanJugadorBatalla.innerHTML=personajeJugador
     /*Una vez el usuario escoge su personaje, el sistema escogera el suyo de modo que no 
     sea el mismo que el del usuario*/
     seleccionarOponente()
