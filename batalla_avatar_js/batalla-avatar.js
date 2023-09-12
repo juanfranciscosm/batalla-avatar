@@ -29,20 +29,29 @@ Cada jugador inicia con 10 puntos de vida
 
 let personajes = ["Katara", "Zuko", "Toph"]
 let ataques = ["AGUA","FUEGO","TIERRA"]
-let personajeJugador =""
-let personajeOponente = personajes[aleatorio(2,0)]
+let personajeJugador = ""
+let personajeOponente = ""
 let ataqueJugador = ""
 let ataqueOponente = ""
-let impactoJugador=0
-let impactoOponente=0
-let vidasOponente=10
-let vidasJugador=10
+let impactoJugador = 0
+let impactoOponente = 0
+let vidasOponente = 10
+let vidasJugador = 10
 let resultado = ""
-let consecuencia =""
+let consecuencia = ""
 
 
 
 function iniciarJuego(){
+    let sectionSeleccionarAtaque = document.getElementById("Escoger-ataque")
+    sectionSeleccionarAtaque.style.display = 'none'
+
+    let sectionConteoVidas = document.getElementById("conteo-vidas")
+    sectionConteoVidas.style.display = 'none'
+
+    let sectionBatalla = document.getElementById("batalla")
+    sectionBatalla.style.display = 'none'
+    
     alert('Selecciona a tu personaje')
     let botonPersonaje=document.getElementById("boton-personaje")
     botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
@@ -53,13 +62,20 @@ function iniciarJuego(){
     botonAgua.addEventListener("click", ataqueAgua)
     let botonTierra = document.getElementById("boton-tierra")
     botonTierra.addEventListener("click", ataqueTierra)
+
     let botonReiniciar = document.getElementById("boton-reiniciar")
-    //botonReiniciar.addEventListener("click", location.reload())
+    botonReiniciar.addEventListener("click", reiniciarJuego)
+    botonReiniciar.style.display='none'
+}
+
+function reiniciarJuego(){
+    location.reload() //metodo para refrescar la pagina
 }
 
 function seleccionAtaqueOponente(){
     ataqueOponente=ataques[aleatorio(2,0)]
 }
+
 function ataqueFuego (){
     ataqueJugador="FUEGO"
     seleccionAtaqueOponente()
@@ -171,6 +187,8 @@ function batalla(){
         spanVidasJugador.innerHTML=vidasJugador.toString() 
         crearMensaje("PERDISTE","pierdes " + reduccionVidas + " vidas." )
     }
+
+    revisarVidas()
 }
 
 function crearMensaje (resultado, consecuencia){
@@ -180,9 +198,36 @@ function crearMensaje (resultado, consecuencia){
     parrafoResultadoBatalla.innerHTML='Atacaste con '+ ataqueJugador+' y tu oponente ataco con ' + ataqueOponente + ". " + resultado +" "+consecuencia
     //con appenchild asignamos un elemento hijo a un elemento padre (padre.appendChild(hijo))
     seccionBatalla.appendChild(parrafoResultadoBatalla)
- b
 }
 
+function crearMensajeFinal (resultadoFinal){
+    let seccionBatalla=document.getElementById("batalla")  //especificamos la seccion donde aparecera los mensajes
+    let parrafoResultadoBatalla = document.createElement('p') //creamos el elemento que encapsula el mensaje
+    //al nuevo elemento se le asigna el mensaje
+    parrafoResultadoBatalla.innerHTML= resultadoFinal
+    //con appenchild asignamos un elemento hijo a un elemento padre (padre.appendChild(hijo))
+    seccionBatalla.appendChild(parrafoResultadoBatalla)
+
+    //se deshabilitan los botones una vez que se define un ganador cuando uno de los contadores de vida llega a cero
+    let botonFuego = document.getElementById("boton-fuego")
+    botonFuego.disabled= true
+    let botonAgua = document.getElementById("boton-agua")
+    botonAgua.disabled=true
+    let botonTierra = document.getElementById("boton-tierra")
+    botonTierra.disabled=true
+    let botonReiniciar = document.getElementById("boton-reiniciar")
+    botonReiniciar.style.display='block'
+}
+
+function revisarVidas(){
+    if (vidasJugador<=0){
+        crearMensajeFinal("FELICIDADES!! GANASTE :)")
+    }
+    else if (vidasOponente<=0){
+        crearMensajeFinal("lo siento, perdiste :(")
+
+    }
+}
 
 function aleatorio(max,min){
         return Math.floor(Math.random()*(max-min+1)+min)
@@ -193,6 +238,7 @@ function seleccionarOponente (){
     let spanPersonajeOponente= document.getElementById("personaje-oponente")
     let spanOponenteBatalla=document.getElementById("personaje-oponente-batalla")
     //Selecciona un oponente que no sea el mismo que escogio el jugador
+    personajeOponente = personajes[aleatorio(2,0)]
     while (personajeJugador == personajeOponente) {
         personajeOponente = personajes[aleatorio(2,0)]
     }
@@ -200,9 +246,21 @@ function seleccionarOponente (){
     spanOponenteBatalla.innerHTML=personajeOponente
     alert("Tu oponente es "+ personajeOponente)
     alert("Escoge tu ataque")
+
+    let sectionSeleccionarAtaque = document.getElementById("Escoger-ataque")
+    sectionSeleccionarAtaque.style.display = 'block'
+    let sectionConteoVidas = document.getElementById("conteo-vidas")
+    sectionConteoVidas.style.display = 'block'
+    let sectionBatalla = document.getElementById("batalla")
+    sectionBatalla.style.display = 'block'
+    
+    let sectionPersonajes = document.getElementById("Escoger-personaje")
+    sectionPersonajes.style.display='none'
+
 }
     
 function seleccionarPersonajeJugador(){
+    
     //se le asigna el valor a la variable personajeJugador
     //Empezamos creando las variables para los inputs de seleccion de cada personaje
     let inputkatara=document.getElementById('katara')
@@ -231,9 +289,9 @@ function seleccionarPersonajeJugador(){
     spanJugadorBatalla.innerHTML=personajeJugador
     /*Una vez el usuario escoge su personaje, el sistema escogera el suyo de modo que no 
     sea el mismo que el del usuario*/
+    
     seleccionarOponente()
 }
-   
 
 window.addEventListener("load",iniciarJuego) /*con esta linea permitimos que el html cargue 
 antes de ejecutar la funcion raiz de inicio del juego*/
