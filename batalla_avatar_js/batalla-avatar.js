@@ -221,10 +221,10 @@ function crearMensajeFinal (resultadoFinal){
 
 function revisarVidas(){
     if (vidasJugador<=0){
-        crearMensajeFinal("FELICIDADES!! GANASTE :)")
+        crearMensajeFinal("lo siento, perdiste :(")
     }
     else if (vidasOponente<=0){
-        crearMensajeFinal("lo siento, perdiste :(")
+        crearMensajeFinal("FELICIDADES!! GANASTE :)")
 
     }
 }
