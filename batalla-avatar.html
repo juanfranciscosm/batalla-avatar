@@ -4,59 +4,46 @@
         <meta charset = "utf-8"/>
         <title>Batalla Avatar</title>
         <script src="./batalla_avatar_js/batalla-avatar.js"></script>
+        <link rel="stylesheet" href="./styles.css">
     </head>
-    <body id="contenido"; style="width: 500px; margin:auto">
+    <body class="contenido">
         <header id="Encabezado-del-juego">
-            <h1><center>Batalla Avatar 🔥💧🌄</center></h1>
+            <h1 class="titulo">Batalla Avatar 🔥💧🌄</h1>
         </header>
         <section id="Escoger-personaje">
-            <center>
             <h2>Escoge a tu personaje</h2>
             <table>
                 <tr>
                     <td>
-                        <center>
                         <label for="katara">
                             <img id="foto-katara" src="ilustraciones/katara.png" height="100" for="katara">
                         </label>
-                        </center>
                     </td>
                     <td>
-                        <center>
                         <label for="zuko">
                             <img id="foto-zuko" src="ilustraciones/zuko.png" height="100">
                         </label>
-                        </center>
                     </td>
                     <td>
-                        <center>
                         <label for="toph">
                             <img for="foto-toph" src="ilustraciones/toph.png" height="100"><br>
                         </label>
-                        </center>
                     </td>
                 </tr>
                 <tr>
                     <th>
-                        <center>
                             <input type="radio" id="katara" name="personaje"><label for="katara">Katara 🌊</label>
-                        </center>
-                    </th>
+                   </th>
                     <th>
-                        <center>
                             <input type="radio" id="zuko" name="personaje"><label for="zuko">Zuko 🔥</label>
-                        </center>
                     </th>
                     <th>
-                        <center>
-                            <input type="radio" id="toph" name="personaje"><label for="toph">Toph 🌄</label><br><br>
-                        </center>
+\                            <input type="radio" id="toph" name="personaje"><label for="toph">Toph 🌄</label><br><br>
                     </th>
                 </tr>
             </table>
             <br>
             <button id="boton-personaje">Seleccionar</button>
-            </center>
         </section>
         <section id="conteo-vidas">
             <h2>Conteo de vidas</h2>
