@@ -4,44 +4,35 @@
         <meta charset = "utf-8"/>
         <title>Batalla Avatar</title>
         <script src="./batalla_avatar_js/batalla-avatar.js"></script>
-        <link rel="stylesheet" href="./styles.css">
+        <link rel="stylesheet" href="./batalla_avatar_css/styles.css">
     </head>
     <body class="contenido">
         <header id="Encabezado-del-juego">
-            <h1 class="titulo">Batalla Avatar 🔥💧🌄</h1>
+            <div class="emblemas">
+                <img src="ilustraciones/EmblemaAguaControl.png" height="100" > 
+                <img src="ilustraciones/EmblemaFuegoControl.png" height="100" >
+                <img src="ilustraciones/EmblemaTierraControl.png" height="100" >
+            </div>
+            <h1 class="titulo">BATALLA AVATAR</h1>
         </header>
         <section id="Escoger-personaje">
-            <h2>Escoge a tu personaje</h2>
-            <table>
-                <tr>
-                    <td>
-                        <label for="katara">
-                            <img id="foto-katara" src="ilustraciones/katara.png" height="100" for="katara">
-                        </label>
-                    </td>
-                    <td>
-                        <label for="zuko">
-                            <img id="foto-zuko" src="ilustraciones/zuko.png" height="100">
-                        </label>
-                    </td>
-                    <td>
-                        <label for="toph">
-                            <img for="foto-toph" src="ilustraciones/toph.png" height="100"><br>
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                            <input type="radio" id="katara" name="personaje"><label for="katara">Katara 🌊</label>
-                   </th>
-                    <th>
-                            <input type="radio" id="zuko" name="personaje"><label for="zuko">Zuko 🔥</label>
-                    </th>
-                    <th>
-\                            <input type="radio" id="toph" name="personaje"><label for="toph">Toph 🌄</label><br><br>
-                    </th>
-                </tr>
-            </table>
+            <h2 class="subtitulo">Escoge a tu personaje</h2>
+            <div class="tarjetas">
+                <label for="katara" class="tarjeta-personaje">
+                    <label for="katara">🌊 Katara </label>   <img id="foto-katara" src="ilustraciones/katara.png" height="80" >
+                </label>   
+                <label for="zuko" class="tarjeta-personaje">
+                    <label for="zuko">🔥 Zuko </label>    <img id="foto-zuko" src="ilustraciones/zuko.png" height="80" >
+                </label>
+                <label for="toph" class="tarjeta-personaje">
+                    <label for="toph">🌄 Toph </label>    <img for="foto-toph" src="ilustraciones/toph.png" height="80" >
+                </label>
+                <input type="radio" id="katara" name="personaje">
+                <input type="radio" id="zuko" name="personaje">
+                <input type="radio" id="toph" name="personaje">
+            </div>  
+            <br>
+            <br>
             <br>
             <button id="boton-personaje">Seleccionar</button>
         </section>

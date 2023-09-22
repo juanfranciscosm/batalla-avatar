@@ -11,7 +11,7 @@ Para el personaje Katara
 - El ataque de Tierra tiene un impacto de 1
 
 Para el personaje Zuko
-- El ataque de Agua tiene un impacto de 1
+- El ataque de Agua tiene un impacto de 1cd 
 - El ataque de Fuego tiene un impacto de 5
 - El ataque de Tierra tiene un impacto de 3
 
@@ -221,10 +221,10 @@ function crearMensajeFinal (resultadoFinal){
 
 function revisarVidas(){
     if (vidasJugador<=0){
-        crearMensajeFinal("lo siento, perdiste :(")
+        crearMensajeFinal("FELICIDADES!! GANASTE :)")
     }
     else if (vidasOponente<=0){
-        crearMensajeFinal("FELICIDADES!! GANASTE :)")
+        crearMensajeFinal("lo siento, perdiste :(")
 
     }
 }
