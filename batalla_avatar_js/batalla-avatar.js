@@ -52,7 +52,6 @@ function iniciarJuego(){
     let sectionBatalla = document.getElementById("batalla")
     sectionBatalla.style.display = 'none'
     
-    alert('Selecciona a tu personaje')
     let botonPersonaje=document.getElementById("boton-personaje")
     botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
 
@@ -244,15 +243,12 @@ function seleccionarOponente (){
     }
     spanPersonajeOponente.innerHTML= personajeOponente
     spanOponenteBatalla.innerHTML=personajeOponente
-    alert("Tu oponente es "+ personajeOponente)
-    alert("Escoge tu ataque")
-
     let sectionSeleccionarAtaque = document.getElementById("Escoger-ataque")
-    sectionSeleccionarAtaque.style.display = 'block'
+    sectionSeleccionarAtaque.style.display = 'flex'
     let sectionConteoVidas = document.getElementById("conteo-vidas")
-    sectionConteoVidas.style.display = 'block'
+    sectionConteoVidas.style.display = 'flex'
     let sectionBatalla = document.getElementById("batalla")
-    sectionBatalla.style.display = 'block'
+    sectionBatalla.style.display = 'flex'
     
     let sectionPersonajes = document.getElementById("Escoger-personaje")
     sectionPersonajes.style.display='none'
@@ -278,7 +274,6 @@ function seleccionarPersonajeJugador(){
         alert('no seleccionaste nada, debes seleccionar un personaje')
         exit
     }
-    alert ("Tu personaje es " + personajeJugador)
     /*Ahora mostramos dentro del html que el personaje del jugador modificando el 
     texto dinamico del html(el que esta entre las etiquetas <span>)*/
     //creamos una variable que represente este elemento dinamico

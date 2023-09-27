@@ -6,7 +6,7 @@
         <script src="./batalla_avatar_js/batalla-avatar.js"></script>
         <link rel="stylesheet" href="./batalla_avatar_css/styles.css">
     </head>
-    <body class="contenido">
+    <body>
         <header id="Encabezado-del-juego">
             <div class="emblemas">
                 <img src="ilustraciones/EmblemaAguaControl.png" height="100" > 
@@ -19,54 +19,46 @@
             <h2 class="subtitulo">Escoge a tu personaje</h2>
             <div class="tarjetas">
                 <label for="katara" class="tarjeta-personaje">
-                    <label for="katara">🌊 Katara </label>   <img id="foto-katara" src="ilustraciones/katara.png" height="80" >
+                    <label for="katara">🌊 KATARA </label>   <img id="foto-katara" src="ilustraciones/katara.png" height="80" >
                 </label>   
                 <label for="zuko" class="tarjeta-personaje">
-                    <label for="zuko">🔥 Zuko </label>    <img id="foto-zuko" src="ilustraciones/zuko.png" height="80" >
+                    <label for="zuko">🔥 ZUKO </label>    <img id="foto-zuko" src="ilustraciones/zuko.png" height="80" >
                 </label>
                 <label for="toph" class="tarjeta-personaje">
-                    <label for="toph">🌄 Toph </label>    <img for="foto-toph" src="ilustraciones/toph.png" height="80" >
+                    <label for="toph">🌄 TOPH </label>    <img for="foto-toph" src="ilustraciones/toph.png" height="80" >
                 </label>
                 <input type="radio" id="katara" name="personaje">
                 <input type="radio" id="zuko" name="personaje">
                 <input type="radio" id="toph" name="personaje">
-            </div>  
-            <br>
-            <br>
-            <br>
-            <button id="boton-personaje">Seleccionar</button>
+            </div> 
+            <button id="boton-personaje">SELECCIONAR</button>
         </section>
-        <section id="conteo-vidas">
-            <h2>Conteo de vidas</h2>
-            <p>
-                A tu oponente <span id="personaje-oponente">...</span> le quedan <span id="vidas-oponente">10</span> puntos de vida
-            </p>
-            <p>
-                A tu heroe <span id="personaje-jugador">...</span> le quedan <span id="vidas-jugador">10</span> puntos de vida
-            </p>
-        </section>
-        
         <section id="Escoger-ataque">
-            <h2>Escoge tu ataque</h2>
-            <p>
-                <button id="boton-agua"> Agua 🌊 </button>
-                <button id="boton-fuego"> Fuego 🔥 </button>
-                <button id="boton-tierra"> Tierra 🌄 </button>
-            </p>
+            <h2 class="subtitulo">Escoge tu ataque</h2>
+            <div class="botones-de-ataques">
+                <button id="boton-agua" class="boton-ataque"> Agua 🌊 </button>
+                <button id="boton-fuego" class="boton-ataque"> Fuego 🔥 </button>
+                <button id="boton-tierra" class="boton-ataque"> Tierra 🌄 </button>
+            </div>
+            <div id="batalla">
+                <h2 class="subtitulo">Batalla</h2>
+                <p>
+                    <span id="personaje-jugador-batalla">...</span> VS <span id="personaje-oponente-batalla">...</span> 
+                </p>
+                <div id="reinicio">
+                    <button id="boton-reiniciar"> Reiniciar juego </button>
+                </div>
+                <p id="mensajes"></p>
+            </div>
+            
+            <div id="conteo-vidas">
+                <p>
+                    A tu oponente <span id="personaje-oponente">...</span> le quedan <span id="vidas-oponente">10</span> puntos de vida
+                </p>
+                <p>
+                    A tu heroe <span id="personaje-jugador">...</span> le quedan <span id="vidas-jugador">10</span> puntos de vida
+                </p>
+            </div>
         </section>
-        <section id="batalla">
-            <h2>Batalla</h2>
-            <p>
-                <span id="personaje-jugador-batalla">...</span> VS <span id="personaje-oponente-batalla">...</span> 
-            </p>
-            <p id="mensajes">
-                
-            </p>
-        
-        </section>
-        <section id="reinicio">
-            <button id="boton-reiniciar"> Reiniciar juego </button>
-        </section>
-        
     </body>
 </html>
