@@ -171,42 +171,48 @@ function batalla(){
         vidasJugador=vidasJugador-2
         spanVidasJugador.innerHTML=vidasJugador.toString()
         spanVidasOponente.innerHTML=vidasOponente.toString()
-        crearMensaje("EMPATE","Se reducen 2 vidas a cada jugador")
+        crearMensaje("EMPATE"," Ambos pierden 2 vidas")
     }
     else if(impactoJugador>impactoOponente){
         let reduccionVidas=impactoJugador-impactoOponente
         vidasOponente=vidasOponente-reduccionVidas
         spanVidasOponente.innerHTML=vidasOponente.toString()
-        crearMensaje("GANASTE","Tu oponente pierde " + reduccionVidas + " vidas")
+        crearMensaje("Lograste herirlo!!. ",personajeOponente+" pierde " + reduccionVidas + " vidas")
     }
     else if(impactoOponente>impactoJugador){
         vidasOponente=vidasOponente-2
         let reduccionVidas=impactoOponente-impactoJugador
         vidasJugador=vidasJugador-reduccionVidas
         spanVidasJugador.innerHTML=vidasJugador.toString() 
-        crearMensaje("PERDISTE","pierdes " + reduccionVidas + " vidas." )
+        crearMensaje("Te hirieron."," Pierdes " + reduccionVidas + " vidas." )
     }
 
     revisarVidas()
 }
 
 function crearMensaje (resultado, consecuencia){
-    let seccionBatalla=document.getElementById("batalla")  //especificamos la seccion donde aparecera los mensajes
-    let parrafoResultadoBatalla = document.createElement('p') //creamos el elemento que encapsula el mensaje
+    //especificamos la seccion donde aparecera los mensajes
+    let resultadoAtaque=document.getElementById("resultado")  
+    let AtaquesDelJugador=document.getElementById("ataque-jugador")    
+    let AtaquesDelOponente=document.getElementById("ataque-oponente") 
+    //creamos el elemento que encapsula el mensaje
+    let nuevoAtaqueDelJugador= document.createElement('p') 
+    let nuevoAtaqueDelOponente= document.createElement('p') 
+
     //al nuevo elemento se le asigna el mensaje
-    parrafoResultadoBatalla.innerHTML='Atacaste con '+ ataqueJugador+' y tu oponente ataco con ' + ataqueOponente + ". " + resultado +" "+consecuencia
+    resultadoAtaque.innerHTML= resultado+consecuencia
+    nuevoAtaqueDelJugador.innerHTML=ataqueJugador
+    nuevoAtaqueDelOponente.innerHTML=ataqueOponente
     //con appenchild asignamos un elemento hijo a un elemento padre (padre.appendChild(hijo))
-    seccionBatalla.appendChild(parrafoResultadoBatalla)
+    AtaquesDelJugador.appendChild(nuevoAtaqueDelJugador)
+    AtaquesDelOponente.appendChild(nuevoAtaqueDelOponente)
 }
 
 function crearMensajeFinal (resultadoFinal){
-    let seccionBatalla=document.getElementById("batalla")  //especificamos la seccion donde aparecera los mensajes
-    let parrafoResultadoBatalla = document.createElement('p') //creamos el elemento que encapsula el mensaje
+    //especificamos las secciones o divs donde aparecera los mensajes
+    let notificacionFinal=document.getElementById("resultado")
     //al nuevo elemento se le asigna el mensaje
-    parrafoResultadoBatalla.innerHTML= resultadoFinal
-    //con appenchild asignamos un elemento hijo a un elemento padre (padre.appendChild(hijo))
-    seccionBatalla.appendChild(parrafoResultadoBatalla)
-
+    notificacionFinal.innerHTML= resultadoFinal
     //se deshabilitan los botones una vez que se define un ganador cuando uno de los contadores de vida llega a cero
     let botonFuego = document.getElementById("boton-fuego")
     botonFuego.disabled= true
@@ -220,10 +226,10 @@ function crearMensajeFinal (resultadoFinal){
 
 function revisarVidas(){
     if (vidasJugador<=0){
-        crearMensajeFinal("FELICIDADES!! GANASTE :)")
+        crearMensajeFinal("lo siento, perdiste :(")
     }
     else if (vidasOponente<=0){
-        crearMensajeFinal("lo siento, perdiste :(")
+        crearMensajeFinal("FELICIDADES!! GANASTE :)")
 
     }
 }
@@ -234,15 +240,13 @@ function aleatorio(max,min){
     
 
 function seleccionarOponente (){
-    let spanPersonajeOponente= document.getElementById("personaje-oponente")
-    let spanOponenteBatalla=document.getElementById("personaje-oponente-batalla")
-    //Selecciona un oponente que no sea el mismo que escogio el jugador
+    let spanPersonajeOponente= document.getElementById("personaje-oponente-batalla")
+    //Selecciona un oponente que no sea el mismo que escogio" el jugador
     personajeOponente = personajes[aleatorio(2,0)]
     while (personajeJugador == personajeOponente) {
         personajeOponente = personajes[aleatorio(2,0)]
     }
     spanPersonajeOponente.innerHTML= personajeOponente
-    spanOponenteBatalla.innerHTML=personajeOponente
     let sectionSeleccionarAtaque = document.getElementById("Escoger-ataque")
     sectionSeleccionarAtaque.style.display = 'flex'
     let sectionConteoVidas = document.getElementById("conteo-vidas")
@@ -276,11 +280,9 @@ function seleccionarPersonajeJugador(){
     }
     /*Ahora mostramos dentro del html que el personaje del jugador modificando el 
     texto dinamico del html(el que esta entre las etiquetas <span>)*/
-    //creamos una variable que represente este elemento dinamico
-    let spanPersonajeJugador= document.getElementById("personaje-jugador") 
+    //creamos una variable que represente este elemento dinamico 
     let spanJugadorBatalla=document.getElementById("personaje-jugador-batalla")
     //le asignamos el valor correspondiente que vendria a ser el nombre del personaje seleccionado
-    spanPersonajeJugador.innerHTML = personajeJugador
     spanJugadorBatalla.innerHTML=personajeJugador
     /*Una vez el usuario escoge su personaje, el sistema escogera el suyo de modo que no 
     sea el mismo que el del usuario*/

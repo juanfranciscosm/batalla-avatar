@@ -34,31 +34,49 @@
             <button id="boton-personaje">SELECCIONAR</button>
         </section>
         <section id="Escoger-ataque">
+            
+            
+            <div id="batalla">
+                <h2 class="subtitulo">Batalla</h2>
+                
+                <div class="mensajes-box">
+                    <p id="resultado"> Mucha Suerte </p>
+                    <div id="reinicio">
+                        <button id="boton-reiniciar"> Reiniciar juego </button>
+                    </div>
+                </div>
+                
+            </div>
+            <div id="conteo-vidas">
+                <div class="perfil-batalla">
+                    <p>
+                        <span id="personaje-jugador-batalla">...</span>  
+                    </p>
+                    <p>
+                        <span id="vidas-jugador">10</span> puntos de vida
+                    </p>
+                    <div id="ataque-jugador"></div>
+                </div>
+                <div class="perfil-batalla">
+                    <p>
+                        <span id="personaje-oponente-batalla">...</span> 
+                    </p>
+                    <p>
+                        <span id="vidas-oponente">10</span> puntos de vida
+                    </p>
+                    <div id="ataque-oponente"></div>
+                </div>
+                
+             </div>
+             
             <h2 class="subtitulo">Escoge tu ataque</h2>
             <div class="botones-de-ataques">
                 <button id="boton-agua" class="boton-ataque"> Agua 🌊 </button>
                 <button id="boton-fuego" class="boton-ataque"> Fuego 🔥 </button>
                 <button id="boton-tierra" class="boton-ataque"> Tierra 🌄 </button>
             </div>
-            <div id="batalla">
-                <h2 class="subtitulo">Batalla</h2>
-                <p>
-                    <span id="personaje-jugador-batalla">...</span> VS <span id="personaje-oponente-batalla">...</span> 
-                </p>
-                <div id="reinicio">
-                    <button id="boton-reiniciar"> Reiniciar juego </button>
-                </div>
-                <p id="mensajes"></p>
-            </div>
             
-            <div id="conteo-vidas">
-                <p>
-                    A tu oponente <span id="personaje-oponente">...</span> le quedan <span id="vidas-oponente">10</span> puntos de vida
-                </p>
-                <p>
-                    A tu heroe <span id="personaje-jugador">...</span> le quedan <span id="vidas-jugador">10</span> puntos de vida
-                </p>
-            </div>
+            
         </section>
     </body>
 </html>
