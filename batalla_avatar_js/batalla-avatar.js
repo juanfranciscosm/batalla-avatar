@@ -171,13 +171,13 @@ function batalla(){
         vidasJugador=vidasJugador-2
         spanVidasJugador.innerHTML=vidasJugador.toString()
         spanVidasOponente.innerHTML=vidasOponente.toString()
-        crearMensaje("EMPATE"," Ambos pierden 2 vidas")
+        crearMensaje("EMPATE   "," Ambos pierden 2 vidas")
     }
     else if(impactoJugador>impactoOponente){
         let reduccionVidas=impactoJugador-impactoOponente
         vidasOponente=vidasOponente-reduccionVidas
         spanVidasOponente.innerHTML=vidasOponente.toString()
-        crearMensaje("Lograste herirlo!!. ",personajeOponente+" pierde " + reduccionVidas + " vidas")
+        crearMensaje("Lograste herirlo!! ",personajeOponente+" pierde " + reduccionVidas + " vidas")
     }
     else if(impactoOponente>impactoJugador){
         vidasOponente=vidasOponente-2

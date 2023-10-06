@@ -9,11 +9,21 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 80px;
+    margin-top: 80px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
+
 
 .emblemas{
     display: flex;
     gap: 20px;
+}
+
+.emblema{
+    height: 100px;
+    width: 100px;
 }
 .titulo {
     color:#D0CDBF;
@@ -42,7 +52,7 @@ body {
     background-color: bisque;
     padding: 15px;
     box-sizing: border-box; 
-    border: 1px solid black;
+    border: 5px solid transparent;
     border-radius: 20px;
     font-size: 15px ;
 
@@ -125,6 +135,11 @@ body {
 
 }
 
+#resultado {
+    justify-content: center;
+    
+}
+
 #boton-reiniciar{
     border: none;
     background-color: transparent;
@@ -134,16 +149,23 @@ body {
 }
 
 #conteo-vidas{
-    display: flex;    
-    flex-direction: row;
+    display:grid;    
+    grid-template-columns: 4fr 200px 2fr 200px 4fr;
     align-items: center;
-    gap: 100px
+    gap: 100px;
+    color:beige
 }
 
 .perfil-batalla{
     display: flex;    
     flex-direction: column;
     align-items: center;
+}
+
+#vidas-oponente, #vidas-jugador{
+    font-size: 30px;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 
@@ -155,4 +177,46 @@ html {
 
 input {
     display: none; /*para ocultar el circulito de input */
+}
+
+input:checked + label { /* Selector para codificar estilo cuando el input este seleccionado
+    tambien existen :hover (cuando se pone el cursor encima) :active (para dejar activado un boton) */
+    /*ademas con el + se asigna propiedades a un selector hermano que adquieren las caracteristicas tambien*/
+    border-color: red;
+    border-width: 5px;
+}
+
+@media (max-width:360px){
+
+    .emblema{
+        height: 70px;
+        width: 70px;
+    }
+    .tarjetas{
+        flex-direction: column;
+    }
+    .titulo {
+        font-size: 30px;
+    }
+    
+    .subtitulo{
+        font-size: 20px;  
+    }
+
+    #boton-personaje {
+        height: 50px;
+        width: 200px;
+    }
+
+    .mensajes-box{
+        height: 100x;
+        width: 300px;
+        font-size: 15px ;
+        margin: 20px 0px 30px 0px;
+    }
+
+    .botones-de-ataques{
+        display: flex;
+        flex-direction: column;
+    }
 }
