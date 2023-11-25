@@ -16,19 +16,8 @@
         </header>
         <section id="Escoger-personaje">
             <h2 class="subtitulo">Escoge a tu personaje</h2>
-            <div class="tarjetas">
-                <input type="radio" id="katara" name="personaje"> <!---el input va antes ya que en css el hermano debe ser el siguiete label correspondiente-->
-                <label for="katara" class="tarjeta-personaje">
-                    <label for="katara">🌊 KATARA </label>   <img id="foto-katara" src="ilustraciones/katara.png" height="80" >
-                </label>   
-                <input type="radio" id="zuko" name="personaje">
-                <label for="zuko" class="tarjeta-personaje">
-                    <label for="zuko">🔥 ZUKO </label>    <img id="foto-zuko" src="ilustraciones/zuko.png" height="80" >
-                </label>
-                <input type="radio" id="toph" name="personaje">
-                <label for="toph" class="tarjeta-personaje">
-                    <label for="toph">🌄 TOPH </label>    <img for="foto-toph" src="ilustraciones/toph.png" height="80" >
-                </label>  
+            <div id="contenedor-tarjetas" class="tarjetas">
+                
             </div> 
             <button id="boton-personaje">SELECCIONAR</button>
         </section>
@@ -61,6 +50,7 @@
                 <button id="boton-agua" class="boton-ataque"> Agua 🌊 </button>
                 <button id="boton-fuego" class="boton-ataque"> Fuego 🔥 </button>
                 <button id="boton-tierra" class="boton-ataque"> Tierra 🌄 </button>
+                <button id="boton-aire" class="boton-ataque"> Aire 🌀 </button>
             </div>
         </section>
         <script src="./batalla_avatar_js/batalla-avatar.js"></script>

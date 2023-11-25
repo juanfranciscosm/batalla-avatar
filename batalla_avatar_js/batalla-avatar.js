@@ -32,6 +32,7 @@ const sectionSeleccionarAtaque = document.getElementById("Escoger-ataque")
 const botonFuego = document.getElementById("boton-fuego")
 const botonAgua = document.getElementById("boton-agua")
 const botonTierra = document.getElementById("boton-tierra")
+const botonAire = document.getElementById("boton-aire")
 const botonReiniciar = document.getElementById("boton-reiniciar")
 const spanVidasJugador = document.getElementById("vidas-jugador")
 const spanVidasOponente = document.getElementById("vidas-oponente")
@@ -40,13 +41,14 @@ const AtaquesDelJugador=document.getElementById("ataque-jugador")
 const AtaquesDelOponente=document.getElementById("ataque-oponente") 
 const spanPersonajeOponente= document.getElementById("personaje-oponente-batalla")
 const sectionPersonajes = document.getElementById("Escoger-personaje")
+const contenedorTarjetas = document.getElementById("contenedor-tarjetas")
+const spanJugadorBatalla=document.getElementById("personaje-jugador-batalla")
 
-let personajes = ["Katara", "Zuko", "Toph"]
-let ataques = ["AGUA","FUEGO","TIERRA"]
 let personajeJugador = ""
 let personajeOponente = ""
 let ataqueJugador = ""
 let ataqueOponente = ""
+let opcionDeAvatares 
 let impactoJugador = 0
 let impactoOponente = 0
 let vidasOponente = 10
@@ -55,6 +57,11 @@ let resultado = ""
 let consecuencia = ""
 //Arreglo de los objetos o personajes
 let avatares = []
+let inputkatara
+let inputZuko
+let inputToph
+
+
 
 //Creamos una clase para los personajes y asi definirles una estructura
 class Avatar { 
@@ -74,60 +81,99 @@ class Avatar {
 let katara = new Avatar ("Katara", 'ilustraciones/katara.png', 10)
 let zuko = new Avatar  ("Zuko",'ilustraciones/zuko.png',10)
 let toph = new Avatar ("Toph", 'ilustraciones/toph.png', 10)
+let aang = new Avatar ("AANG", 'ilustraciones/aang.png', 10)
 
-avatares.push(katara, zuko, toph)
+avatares.push(katara, zuko, toph, aang)
 
 //agregamos los objetos de ataques al arreglo de ataques para cada personaje, los cuales tienen diferentes ataques distintos
 katara.ataques.push(
-    {nombre: '🌊', id: 'boton-agua'},
-    {nombre: '🌊', id: 'boton-agua'},
-    {nombre: '🌊', id: 'boton-agua'},
-    {nombre: '🔥', id: 'boton-fuego'},
-    {nombre: '🌄', id: 'boton-tierra'}
+    {nombre: 'Agua 🌊', id: 'boton-agua', impactoataque: 5},
+    {nombre: 'Agua 🌊', id: 'boton-agua', impactoataque: 5},
+    {nombre: 'Aire 🌀', id: 'boton-aire', impactoataque: 4},
+    {nombre: 'Agua 🌊', id: 'boton-agua', impactoataque: 5},
+    {nombre: 'Fuego 🔥', id: 'boton-fuego', impactoataque: 1},
+    {nombre: 'Tierra 🌄', id: 'boton-tierra', impactoataque: 1}
     )
 toph.ataques.push(
-    {nombre: '🌊', id: 'boton-agua'},
-    {nombre: '🔥', id: 'boton-fuego'},
-    {nombre: '🌄', id: 'boton-tierra'},
-    {nombre: '🌄', id: 'boton-tierra'},
-    {nombre: '🌄', id: 'boton-tierra'}
+    {nombre: 'Agua 🌊', id: 'boton-agua', impactoataque: 1},
+    {nombre: 'Fuego 🔥', id: 'boton-fuego', impactoataque: 2},
+    {nombre: 'Aire 🌀', id: 'boton-aire', impactoataque: 4},
+    {nombre: 'Tierra 🌄', id: 'boton-tierra', impactoataque: 5},
+    {nombre: 'Tierra 🌄', id: 'boton-tierra', impactoataque: 5},
+    {nombre: 'Tierra 🌄', id: 'boton-tierra', impactoataque: 5}
     )
 zuko.ataques.push(
-    {nombre: '🌊', id: 'boton-agua'},
-    {nombre: '🔥', id: 'boton-fuego'},
-    {nombre: '🔥', id: 'boton-fuego'},
-    {nombre: '🔥', id: 'boton-fuego'},
-    {nombre: '🌄', id: 'boton-tierra'}
+    {nombre: 'Agua 🌊', id: 'boton-agua', impactoataque: 1},
+    {nombre: 'Fuego 🔥', id: 'boton-fuego', impactoataque: 5},
+    {nombre: 'Aire 🌀', id: 'boton-aire', impactoataque: 4},
+    {nombre: 'Fuego 🔥', id: 'boton-fuego', impactoataque: 5},
+    {nombre: 'Fuego 🔥', id: 'boton-fuego', impactoataque: 5},
+    {nombre: 'Tierra 🌄', id: 'boton-tierra', impactoataque: 3}
     )
+
+aang.ataques.push(
+        {nombre: 'Aire 🌀', id: 'boton-aire', impactoataque: 4},
+        {nombre: 'Aire 🌀', id: 'boton-aire', impactoataque: 4},
+        {nombre: 'Agua 🌊', id: 'boton-agua', impactoataque: 4},
+        {nombre: 'Agua 🌊', id: 'boton-agua', impactoataque: 4},
+        {nombre: 'Fuego 🔥', id: 'boton-fuego', impactoataque: 2},
+        {nombre: 'Tierra 🌄', id: 'boton-tierra', impactoataque: 3}
+)
 function iniciarJuego(){
     sectionSeleccionarAtaque.style.display = 'none'
     sectionConteoVidas.style.display = 'none'
     sectionBatalla.style.display = 'none'
+
+    avatares.forEach((avatar)=>{
+        //creamos templates iterarios que nos permitira implementar en html los valores de las variables
+        opcionDeAvatares=`
+        <input type="radio" id="${avatar.nombre}" name="personaje"> <!---el input va antes ya que en css el hermano debe ser el siguiete label correspondiente-->
+        <label for="${avatar.nombre}" class="tarjeta-personaje">
+            <label for="${avatar.nombre}"> ${avatar.nombre} </label> <img id="foto-${avatar.nombre}" src="${avatar.foto}" height="80" >
+        </label>   `
+        contenedorTarjetas.innerHTML+= opcionDeAvatares
+
+        //despues que se crearon los id en html, le damos el valor a las variables de los inputs de cada personaje
+        inputkatara=document.getElementById('Katara')               
+        inputZuko=document.getElementById('Zuko')
+        inputToph=document.getElementById('Toph')
+        inputAang=document.getElementById('AANG')
+    })
+
+
     botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
     botonFuego.addEventListener("click", ataqueFuego)
     botonAgua.addEventListener("click", ataqueAgua)
     botonTierra.addEventListener("click", ataqueTierra)
+    botonAire.addEventListener("click", ataqueAire)
     botonReiniciar.addEventListener("click", reiniciarJuego)
     botonReiniciar.style.display='none'
+
 }
 function reiniciarJuego(){
     location.reload() //metodo para refrescar la pagina
 }
 function seleccionAtaqueOponente(){
-    ataqueOponente=ataques[aleatorio(2,0)]
+    ataqueOponente=ataques[aleatorio(5,0)].nombre
 }
 function ataqueFuego (){
-    ataqueJugador="FUEGO"
+    ataqueJugador="Fuego 🔥"
     seleccionAtaqueOponente()
     batalla()
 }
 function ataqueAgua (){
-    ataqueJugador="AGUA"
+    ataqueJugador="Agua 🌊"
     seleccionAtaqueOponente()
     batalla()
 }
 function ataqueTierra (){
-    ataqueJugador="TIERRA"
+    ataqueJugador="Tierra 🌄"
+    seleccionAtaqueOponente()
+    batalla()
+}
+
+function ataqueAire (){
+    ataqueJugador="Aire 🌀"
     seleccionAtaqueOponente()
     batalla()
 }
@@ -264,9 +310,9 @@ function aleatorio(max,min){
 
 function seleccionarOponente (){    
     //Selecciona un oponente que no sea el mismo que escogio" el jugador
-    personajeOponente = personajes[aleatorio(2,0)]
+    personajeOponente = avatares[aleatorio(avatares.length,0)].nombre
     while (personajeJugador == personajeOponente) {
-        personajeOponente = personajes[aleatorio(2,0)]
+        personajeOponente = avatares[aleatorio(avatares.length,0)].nombre
     }
     spanPersonajeOponente.innerHTML= personajeOponente
     sectionSeleccionarAtaque.style.display = 'flex'
@@ -278,26 +324,24 @@ function seleccionarOponente (){
     
 function seleccionarPersonajeJugador(){
     //se le asigna el valor a la variable personajeJugador
-    //Empezamos creando las variables para los inputs de seleccion de cada personaje
-    let inputkatara=document.getElementById('katara')
-    let inputZuko=document.getElementById('zuko')
-    let inputToph=document.getElementById('toph')
+    //Empezamos creando las variables para los inputs de seleccion de cada personaje (arriba)
     //Ya que son inputs, verificamos si tienen el check cada uno de los inputs
     //dependiendo del que sea verdadero, se le asigna un valor al personajeJugador
     if (inputkatara.checked){
-        personajeJugador="Katara"
+        personajeJugador= inputkatara.id //utilizamos la info de una sola fuente de verdad en vez de crear nueva info, asi la info se cambia en todo el flujo del codigo
     } else if (inputZuko.checked) {
-        personajeJugador="Zuko"
+        personajeJugador= inputZuko.id
     } else if (inputToph.checked){
-        personajeJugador="Toph"
-    } else {
+        personajeJugador= inputToph.id
+    } else if (inputAang.checked){
+        personajeJugador=inputAang.id
+    }else {
         alert('no seleccionaste nada, debes seleccionar un personaje')
         exit
     }
     /*Ahora mostramos dentro del html que el personaje del jugador modificando el 
     texto dinamico del html(el que esta entre las etiquetas <span>)*/
     //creamos una variable que represente este elemento dinamico 
-    let spanJugadorBatalla=document.getElementById("personaje-jugador-batalla")
     //le asignamos el valor correspondiente que vendria a ser el nombre del personaje seleccionado
     spanJugadorBatalla.innerHTML=personajeJugador
     /*Una vez el usuario escoge su personaje, el sistema escogera el suyo de modo que no sea el mismo que el del usuario*/
