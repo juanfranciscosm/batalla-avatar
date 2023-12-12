@@ -46,8 +46,9 @@ let personajeOponente = ""
 let ataqueJugador = ""
 let ataqueOponente = ""
 let opcionDeAvatares 
-let impactoJugador = 0
-let impactoOponente = 0
+let opcionDeAtaques
+let impactoJugador
+let impactoOponente
 let vidasOponente = 10
 let vidasJugador = 10
 let resultado = ""
@@ -57,8 +58,22 @@ let avatares = []
 let inputkatara
 let inputZuko
 let inputToph
-
-
+let botonFuego1
+let botonFuego2 
+let botonFuego3
+let botonFuego4              
+let botonTierra1
+let botonTierra2
+let botonTierra3
+let botonTierra4
+let botonAgua1  
+let botonAgua2
+let botonAgua3
+let botonAgua4
+let botonAireA
+let botonAguaA
+let botonTierraA
+let botonFuegoA
 
 //Creamos una clase para los personajes y asi definirles una estructura
 class Avatar { 
@@ -121,15 +136,16 @@ function iniciarJuego(){
             <label for="${avatar.nombre}"> ${avatar.nombre} </label> <img id="foto-${avatar.nombre}" src="${avatar.foto}" height="80" >
         </label>   `
         contenedorTarjetas.innerHTML+= opcionDeAvatares
-
         //despues que se crearon los id en html, le damos el valor a las variables de los inputs de cada personaje
         inputkatara=document.getElementById('Katara')               
         inputZuko=document.getElementById('Zuko')
         inputToph=document.getElementById('Toph')
         inputAang=document.getElementById('AANG')
     })
-
-
+    
+   
+    
+    
     botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
     botonReiniciar.addEventListener("click", reiniciarJuego)
     botonReiniciar.style.display='none'
@@ -141,24 +157,84 @@ function reiniciarJuego(){
 function seleccionAtaqueOponente(){
     ataqueOponente=ataques[aleatorio(5,0)]
 }
-function ataqueFuego (){
-    ataqueJugador="Fuego 🔥"
+function ataqueFuego1 (){
+    ataqueJugador="Fuego 1 🔥"
+    console.log(ataquesJugador)
     seleccionAtaqueOponente()
     batalla()
 }
-function ataqueAgua (){
-    ataqueJugador="Agua 🌊"
+function ataqueFuego2 (){
+    ataqueJugador="Fuego 2 🔥"
     seleccionAtaqueOponente()
     batalla()
 }
-function ataqueTierra (){
-    ataqueJugador="Tierra 🌄"
+function ataqueFuego3 (){
+    ataqueJugador="Fuego 3 🔥"
     seleccionAtaqueOponente()
     batalla()
 }
-
-function ataqueAire (){
-    ataqueJugador="Aire 🌀"
+function ataqueFuego4 (){
+    ataqueJugador="Fuego 4 🔥"
+    seleccionAtaqueOponente()
+    batalla()
+}
+function ataqueAgua1 (){
+    ataqueJugador="Agua 1 🌊"
+    seleccionAtaqueOponente()
+    batalla()
+}
+function ataqueAgua2 (){
+    ataqueJugador="Agua 2 🌊"
+    seleccionAtaqueOponente()
+    batalla()
+}
+function ataqueAgua3 (){
+    ataqueJugador="Agua 3 🌊"
+    seleccionAtaqueOponente()
+    batalla()
+}
+function ataqueAgua4 (){
+    ataqueJugador="Agua 4 🌊"
+    seleccionAtaqueOponente()
+    batalla()
+}
+function ataqueTierra1 (){
+    ataqueJugador="Tierra 1 🌄"
+    seleccionAtaqueOponente()
+    batalla()
+}
+function ataqueTierra2 (){
+    ataqueJugador="Tierra 2 🌄"
+    seleccionAtaqueOponente()
+    batalla()
+}
+function ataqueTierra3 (){
+    ataqueJugador="Tierra 3 🌄"
+    seleccionAtaqueOponente()
+    batalla()
+}
+function ataqueTierra4 (){
+    ataqueJugador="Tierra 4 🌄"
+    seleccionAtaqueOponente()
+    batalla()
+}
+function ataqueAireA (){
+    ataqueJugador="Aire A"
+    seleccionAtaqueOponente()
+    batalla()
+}
+function ataqueTierraA (){
+    ataqueJugador="Tierra A"
+    seleccionAtaqueOponente()
+    batalla()
+}
+function ataqueAguaA (){
+    ataqueJugador="Agua A"
+    seleccionAtaqueOponente()
+    batalla()
+}
+function ataqueFuegoA (){
+    ataqueJugador="Fuego A"
     seleccionAtaqueOponente()
     batalla()
 }
@@ -305,9 +381,8 @@ function seleccionarOponente (){
     sectionConteoVidas.style.display = 'flex'
     sectionBatalla.style.display = 'flex'  
     sectionPersonajes.style.display='none'
-
 }
-    
+
 function seleccionarPersonajeJugador(){
     //se le asigna el valor a la variable personajeJugador
     //Empezamos creando las variables para los inputs de seleccion de cada personaje (arriba)
@@ -334,7 +409,6 @@ function seleccionarPersonajeJugador(){
     spanJugadorBatalla.innerHTML=personajeJugador
     /*Una vez el usuario escoge su personaje, el sistema escogera el suyo de modo que no sea el mismo que el del usuario*/
     seleccionarOponente()
-   
 }
 
 function extraerAtaquesJugador(avatar){
@@ -358,26 +432,49 @@ function mostrarAtaquesJugador(ataquesJugador){
         opcionDeAtaques=`
         <button id="${ataque.id}" class="boton-ataque"> ${ataque.nombre} </button>`
         contenedorBotonesAtaques.innerHTML+= opcionDeAtaques
-
-        //despues que se crearon los id en html, le damos el valor a las variables de los inputs de cada personaje
-        botonFuego1=document.getElementById('boton-fuego1') 
-        botonFuego2=document.getElementById('boton-fuego2')   
-        botonFuego3=document.getElementById('boton-fuego3')   
-        botonFuego4=document.getElementById('boton-fuego4')                 
-        botonTierra1=document.getElementById('boton-tierra1') 
-        botonTierra2=document.getElementById('boton-tierra2')   
-        botonTierra3=document.getElementById('boton-tierra3')   
-        botonTierra4=document.getElementById('boton-tierra4')
+    })
+    //despues que se crearon los id en html, le damos el valor a las variables de los inputs de cada personaje
+    if (personajeJugador=="Katara") {
         botonAgua1=document.getElementById('boton-agua1')   
         botonAgua2=document.getElementById('boton-agua2') 
         botonAgua3=document.getElementById('boton-agua3') 
         botonAgua4=document.getElementById('boton-agua4') 
-        botonAireA= document.getElementById('boton-aireA')
-        botonAguaA= document.getElementById('boton-aguaA')
-        botonTierraA= document.getElementById('boton-TierraA')
-        botonFuegoA= document.getElementById('boton-FuegoA')
-
-    })
+        botonAgua1.addEventListener("click", ataqueAgua1) 
+        botonAgua2.addEventListener("click", ataqueAgua2)
+        botonAgua3.addEventListener("click", ataqueAgua3)
+        botonAgua4.addEventListener("click", ataqueAgua4)
+    }
+    else if (personajeJugador=="Zuko"){
+        botonFuego1=document.getElementById('boton-fuego1') 
+        botonFuego2=document.getElementById('boton-fuego2')   
+        botonFuego3=document.getElementById('boton-fuego3')   
+        botonFuego4=document.getElementById('boton-fuego4')
+        botonFuego1.addEventListener("click", ataqueFuego1)
+        botonFuego2.addEventListener("click", ataqueFuego2)
+        botonFuego3.addEventListener("click", ataqueFuego3)   
+        botonFuego4.addEventListener("click", ataqueFuego4)    
+    }
+    else if (personajeJugador=="Toph"){
+        botonTierra1=document.getElementById('boton-tierra1') 
+        botonTierra2=document.getElementById('boton-tierra2')   
+        botonTierra3=document.getElementById('boton-tierra3')   
+        botonTierra4=document.getElementById('boton-tierra4')
+        botonTierra1.addEventListener("click", ataqueTierra1)
+        botonTierra2.addEventListener("click", ataqueTierra2) 
+        botonTierra3.addEventListener("click", ataqueTierra3)
+        botonTierra4.addEventListener("click", ataqueTierra4)
+    }
+    else if (personajeJugador=="Aang"){
+        botonAireA=document.getElementById('boton-aireA')
+        botonAguaA=document.getElementById('boton-aguaA')
+        botonTierraA=document.getElementById('boton-TierraA')
+        botonFuegoA=document.getElementById('boton-FuegoA')
+        botonAireA.addEventListener("click", ataqueAireA)
+        botonAguaA.addEventListener("click", ataqueAguaA)
+        botonTierraA.addEventListener("click", ataqueTierraA)
+        botonFuegoA.addEventListener("click", ataqueFuegoA)
+    }
+        
 }
 
 window.addEventListener("load",iniciarJuego) /*con esta linea permitimos que el html cargue antes de ejecutar la funcion raiz de inicio del juego*/
