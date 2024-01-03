@@ -58,6 +58,8 @@ let avatares = []
 let inputkatara
 let inputZuko
 let inputToph
+let botones = []
+
 let botonFuego1
 let botonFuego2 
 let botonFuego3
@@ -74,7 +76,7 @@ let botonAireA
 let botonAguaA
 let botonTierraA
 let botonFuegoA
-//let ataquesOponente=[]
+
 
 
 //Creamos una clase para los personajes y asi definirles una estructura
@@ -145,8 +147,6 @@ function iniciarJuego(){
         inputAang=document.getElementById('AANG')
     })
     
-   
-    
     
     botonPersonaje.addEventListener("click", seleccionarPersonajeJugador)
     botonReiniciar.addEventListener("click", reiniciarJuego)
@@ -157,15 +157,11 @@ function reiniciarJuego(){
     location.reload() //metodo para refrescar la pagina
 }
 function seleccionAtaqueOponente(){
-    console.log(ataquesOponente)
-    ataqueOponente=ataquesOponente[aleatorio(3,0)].nombre
-    console.log(ataqueOponente)
+    let arrayAtaquesOponente=extraerAtaquesOponente(personajeOponente)
+    ataqueOponente=arrayAtaquesOponente[aleatorio(3,0)].nombre
 }
 function ataqueFuego1 (){
-    extraerAtaquesOponente(personajeOponente)
-
     ataqueJugador="Fuego 1 🔥"
-    console.log(ataquesJugador)
     seleccionAtaqueOponente()
     batalla()
 }
@@ -372,14 +368,15 @@ function revisarVidas(){
 function aleatorio(max,min){
         return Math.floor(Math.random()*(max-min+1)+min)
 }    
-function seleccionarOponente (){    
+
+function seleccionarOponente() {    
     //Selecciona un oponente que no sea el mismo que escogio" el jugador
     console.log(avatares)
-    personajeOponente = avatares[aleatorio(avatares.length,0)]
-    while (personajeJugador == personajeOponente) {
+    personajeOponente = avatares[aleatorio(avatares.length,0)].nombre
+    while (personajeJugador === personajeOponente) {
         personajeOponente = avatares[aleatorio(avatares.length,0)].nombre
     }
-
+    secuenciaAtaque()
     spanPersonajeOponente.innerHTML= personajeOponente
     sectionSeleccionarAtaque.style.display = 'flex'
     sectionConteoVidas.style.display = 'flex'
@@ -387,13 +384,16 @@ function seleccionarOponente (){
     sectionPersonajes.style.display='none'
 }
 function extraerAtaquesOponente(oponente){
-    
+    let ataquesOponente = []
     for(let i=0; i< avatares.length; i++){
         if (oponente === avatares[i].nombre){
             ataquesOponente=avatares[i].ataques
         }
     }
+
+    return ataquesOponente
 }
+
 function seleccionarPersonajeJugador(){
     //se le asigna el valor a la variable personajeJugador
     //Empezamos creando las variables para los inputs de seleccion de cada personaje (arriba)
@@ -439,9 +439,12 @@ function mostrarAtaquesJugador(ataquesJugador){
     ataquesJugador.forEach((ataque)=>{
         //creamos templates iterarios que nos permitira implementar en html los valores de las variables
         opcionDeAtaques=`
-        <button id="${ataque.id}" class="boton-ataque"> ${ataque.nombre} </button>`
+        <button id="${ataque.id}" class="boton-ataque BAtaques"> ${ataque.nombre} </button>`
         contenedorBotonesAtaques.innerHTML+= opcionDeAtaques
     })
+    //Ponemos todos los botones que se generen dentro de un arreglo con las siguiente linea (el arreglo se define al inicio de todo el programa)
+    botones = document.querySelectorAll(".BAtaques")
+    console.log(botones)
     //despues que se crearon los id en html, le damos el valor a las variables de los inputs de cada personaje
     if (personajeJugador=="Katara") {
         botonAgua1=document.getElementById('boton-agua1')   
@@ -483,7 +486,15 @@ function mostrarAtaquesJugador(ataquesJugador){
         botonTierraA.addEventListener("click", ataqueTierraA)
         botonFuegoA.addEventListener("click", ataqueFuegoA)
     }
-        
+
 }
+function secuenciaAtaque() {
+    botones.forEach((boton)=> {
+        boton.addEventListener('click',(e)=>{
+            console.log(e)
+        })
+    })
+} 
+
 window.addEventListener("load",iniciarJuego) /*con esta linea permitimos que el html cargue antes de ejecutar la funcion raiz de inicio del juego*/
 
